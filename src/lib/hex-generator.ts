@@ -18,7 +18,7 @@ const componentToHexColor = (component: number) => {
   return hex.length === 1 ? "0" + hex : hex;
 }
 
-export function rgb2hsl(r: number, g: number, b: number, offset: number = 0) {
+export function rgb2hsl(r: number, g: number, b: number, hueOffset: number = 0) {
   r = r / 255
   g = g / 255
   b = b / 255;
@@ -33,8 +33,6 @@ export function rgb2hsl(r: number, g: number, b: number, offset: number = 0) {
     sat = c / (1 - Math.abs(2 * lum - 1));
     switch (max) {
       case r:
-        hue = (g - b) / c;
-        hue = ((g - b) / c) % 6;
         hue = (g - b) / c + (g < b ? 6 : 0);
         break;
       case g:
@@ -45,9 +43,9 @@ export function rgb2hsl(r: number, g: number, b: number, offset: number = 0) {
         break;
     }
   }
-  hue = Math.round(hue! * 60) + offset;
-  sat = Math.round(sat * 100) + offset;
-  lum = Math.round(lum * 100) + offset;
+  hue = Math.round(hue * 60) + hueOffset;
+  sat = Math.round(sat * 100);
+  lum = Math.round(lum * 100);
 
-  return [hue, sat, lum];
+  return [hue, sat + '%', lum + '%'];
 }
