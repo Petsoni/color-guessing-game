@@ -3,6 +3,7 @@ import {createRouter, RouterProvider} from '@tanstack/react-router'
 import "./index.css";
 
 import {routeTree} from './routeTree.gen'
+import {Toaster} from "@/components/ui/sonner.tsx";
 
 const router = createRouter({routeTree})
 
@@ -17,6 +18,9 @@ const rootElement = document.getElementById('root')!
 if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement)
   root.render(
-    <RouterProvider router={router}/>
+    <>
+      <RouterProvider router={router}/>
+      <Toaster />
+    </>
   )
 }
