@@ -11,6 +11,7 @@ function RouteComponent() {
 
   const gridDivRef = useRef<HTMLDivElement>(null);
   const [numberOfTimesPlayed, setNumberOfTimesPlayed] = useState<number>(0);
+  const hueOffsetRef = useRef<number>(100);
 
   const createTiles = () => {
     const tiles: HTMLDivElement[] = [];
@@ -27,7 +28,7 @@ function RouteComponent() {
       tiles.push(tileDiv);
     }
 
-    const newColor = rgb2hsl(rgb[0], rgb[1], rgb[2], 30)
+    const newColor = rgb2hsl(rgb[0], rgb[1], rgb[2], hueOffsetRef.current)
     const randomTile = tiles[Math.floor(Math.random() * tiles.length)];
     randomTile.style.backgroundColor = `hsl(${newColor[0]} ${newColor[1]} ${newColor[2]})`;
     tiles.forEach((tile) => {
@@ -36,10 +37,20 @@ function RouteComponent() {
 
     randomTile.addEventListener("click", () => {
       gridDivRef.current!.innerHTML = "";
-      createTiles();
-      toast("Correct!")
-      setNumberOfTimesPlayed((prev) => prev + 1)
-    });  }
+      setNumberOfTimesPlayed((prev) => {
+        const newCount = prev + 1;
+        if (newCount % 5 === 0) {
+          hueOffsetRef.current = hueOffsetRef.current - 10;
+        }
+        return newCount;
+      });
+      if (hueOffsetRef.current == 0) {
+        toast("Congratulations!");
+      } else {
+        createTiles();
+      }
+    });
+  }
 
   useEffect(() => {
     createTiles();
