@@ -10,7 +10,7 @@ export const Route = createFileRoute('/')({
 function RouteComponent() {
 
   const gridDivRef = useRef<HTMLDivElement>(null);
-  const [numberOfTimesPlayed, setNumberOfTimesPlayed] = useState<number>(0);
+  const [numberOfTimesPlayed, setNumberOfTimesPlayed] = useState<number>(1);
   const hueOffsetRef = useRef<number>(100);
 
   const createTiles = () => {
@@ -44,7 +44,7 @@ function RouteComponent() {
         }
         return newCount;
       });
-      if (hueOffsetRef.current == 0) {
+      if (hueOffsetRef.current == 0 && numberOfTimesPlayed == 50) {
         toast("Congratulations!");
       } else {
         createTiles();
@@ -61,7 +61,7 @@ function RouteComponent() {
       <h1>Color guessing game</h1>
 
       <div className="grid grid-cols-3 gap-3" ref={gridDivRef}></div>
-      <p className={"w-full text-center text-2xl pt-10"}>{numberOfTimesPlayed}</p>
+      <p className={"w-full text-center text-2xl pt-10"}>Round {numberOfTimesPlayed}</p>
     </section>
   )
 }
