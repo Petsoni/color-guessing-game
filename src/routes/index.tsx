@@ -60,8 +60,8 @@ function RouteComponent() {
     <section>
       <h1>Color guessing game</h1>
 
-      <p>{numberOfTimesPlayed}</p>
       <div className="grid grid-cols-3 gap-3" ref={gridDivRef}></div>
+      <p className={"w-full text-center text-2xl pt-10"}>{numberOfTimesPlayed}</p>
     </section>
   )
 }
