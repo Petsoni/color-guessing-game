@@ -1,6 +1,6 @@
 import {randomRgb, rgb2hsl} from "@/lib/hex-generator";
 import {createFileRoute} from '@tanstack/react-router'
-import {useEffect, useRef} from "react";
+import {useEffect, useRef, useState} from "react";
 import {toast} from "sonner";
 
 export const Route = createFileRoute('/')({
@@ -10,6 +10,7 @@ export const Route = createFileRoute('/')({
 function RouteComponent() {
 
   const gridDivRef = useRef<HTMLDivElement>(null);
+  const [numberOfTimesPlayed, setNumberOfTimesPlayed] = useState<number>(0);
 
   const createTiles = () => {
     const tiles: HTMLDivElement[] = [];
@@ -37,6 +38,7 @@ function RouteComponent() {
       gridDivRef.current!.innerHTML = "";
       createTiles();
       toast("Correct!")
+      setNumberOfTimesPlayed((prev) => prev + 1)
     });  }
 
   useEffect(() => {
@@ -47,6 +49,7 @@ function RouteComponent() {
     <section>
       <h1>Color guessing game</h1>
 
+      <p>{numberOfTimesPlayed}</p>
       <div className="grid grid-cols-3 gap-3" ref={gridDivRef}></div>
     </section>
   )
