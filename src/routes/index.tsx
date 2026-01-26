@@ -19,10 +19,8 @@ function RouteComponent() {
 
     for (let i = 0; i < 9; i++) {
       const tileDiv = document.createElement("div");
-      tileDiv.style.width = "10rem";
-      tileDiv.style.height = "10rem";
       tileDiv.id = `tile-${i}`;
-      tileDiv.className = "hover:scale-98 hover:cursor-pointer";
+      tileDiv.className = "w-20 h-20 lg:w-40 lg:h-40 hover:scale-98 hover:cursor-pointer transition-all";
       const generatedHsl = rgb2hsl(rgb[0], rgb[1], rgb[2], 0)
       tileDiv.style.backgroundColor = `hsl(${generatedHsl[0]} ${generatedHsl[1]} ${generatedHsl[2]})`;
       tiles.push(tileDiv);
@@ -60,7 +58,12 @@ function RouteComponent() {
     <section>
       <h1>Color guessing game</h1>
 
-      <div className="grid grid-cols-3 gap-3" ref={gridDivRef}></div>
+      {numberOfTimesPlayed == 50 ? (
+        <p className={"w-full text-center text-2xl pt-10"}>You win!</p>
+
+      ) : (
+        <div className="grid grid-cols-3 gap-3" ref={gridDivRef}></div>
+      )}
       <p className={"w-full text-center text-2xl pt-10"}>Round {numberOfTimesPlayed}</p>
     </section>
   )
