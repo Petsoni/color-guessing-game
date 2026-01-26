@@ -7,27 +7,27 @@ export const Route = createRootRoute({
 
 function RootComponent() {
   return (
-    <main className={"flex flex-col items-center justify-center"}>
-      <div className="p-2 flex gap-2 text-lg">
-        <Link
-          to="/"
-          activeProps={{
-            className: 'font-bold',
-          }}
-          activeOptions={{exact: true}}
-        >
-          Home
-        </Link>{' '}
-        <Link
-          to="/about"
-          activeProps={{
-            className: 'font-bold',
-          }}
-        >
-          About
-        </Link>
-      </div>
-      <hr/>
+    <main className={"flex flex-col items-center justify-center h-dvh"}>
+      {/*<div className="p-2 flex gap-2 text-lg">*/}
+      {/*  <Link*/}
+      {/*    to="/"*/}
+      {/*    activeProps={{*/}
+      {/*      className: 'font-bold',*/}
+      {/*    }}*/}
+      {/*    activeOptions={{exact: true}}*/}
+      {/*  >*/}
+      {/*    Home*/}
+      {/*  </Link>{' '}*/}
+      {/*  <Link*/}
+      {/*    to="/about"*/}
+      {/*    activeProps={{*/}
+      {/*      className: 'font-bold',*/}
+      {/*    }}*/}
+      {/*  >*/}
+      {/*    About*/}
+      {/*  </Link>*/}
+      {/*</div>*/}
+      {/*<hr/>*/}
       <Outlet/>
       <TanStackRouterDevtools position="bottom-right"/>
     </main>

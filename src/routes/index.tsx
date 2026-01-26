@@ -56,8 +56,6 @@ function RouteComponent() {
 
   return (
     <section>
-      <h1>Color guessing game</h1>
-
       {numberOfTimesPlayed == 50 ? (
         <p className={"w-full text-center text-2xl pt-10"}>You win!</p>
 
